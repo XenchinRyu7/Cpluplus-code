@@ -1,12 +1,13 @@
-#include <iostream>  // standard input dan output
-#include <conio.h> // fungsi getch()
-#include <cctype> // fungsi isdigit(), mengecek angka atau bukannya
-#include <string> // konversi string ke integer, fungsi stoi
-#include <algorithm> // membantu fungsi convert seperti transform() string to lower or upper, dan all_of() untuk mengecek string ada angka atau tidaknya
-#include <vector> // untuk penggunaan array bertipe vector, supaya dinamis dalam memanipulasi array, seperti push back
+#include <iostream>  
+#include <conio.h> 
+#include <cctype> 
+#include <string>
+#include <algorithm> 
+#include <vector>
+#include <windows.h>
 using namespace std;
 
-void sports() { // fungsi void ini digunakan untuk mencetak array 3 dimensi dalam membuat logo uniku futsal ditambah dengan perulangan 3 variabel di dalamnya
+void sports() { 
     int merek[2][8][60] = {
         {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -44,7 +45,7 @@ void sports() { // fungsi void ini digunakan untuk mencetak array 3 dimensi dala
     }
 };
 
-void tempat() { // fungsi void ini digunakan untuk mencetak array 3 dimensi dalam membuat denah tempat futsal yang termasuk lapangan dan tempat penyewaan baju serta toilet
+void tempat() { 
     int denah[4][8][28] = {
         {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -87,7 +88,7 @@ void tempat() { // fungsi void ini digunakan untuk mencetak array 3 dimensi dala
             {0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0}
         }
     };
-    for (int s = 0; s < 4; s++) { // perulangan untuk menampilkan nya menggunakan 3 variabel
+    for (int s = 0; s < 4; s++) {
         for (int r = 0; r < 8; r++) {
             cout << "                ";
             for (int n = 0; n < 28; n++) {
@@ -103,14 +104,14 @@ void tempat() { // fungsi void ini digunakan untuk mencetak array 3 dimensi dala
 };
 
 int main () {
-    int pelanggan, i, laporan = 0, bayar, index; // variabel login untuk mengecek jika pengguna ingin masuk sebagai admin atau user, variabel pelanggan untuk meminta total transaksi dengan pelanggan, supaya ketika perulangan bisa langsung 2 kali, meskipun 1 kali juga bisa saja.
-    string pass[2] = {"admin123", "user123"}, cek, konversi;
+    int pelanggan, i, laporan = 0, bayar, index; 
+    string pass[2] = {"admin123", "user123"}, cek;
     char login, baru;
     vector<string> nama, jam, no_telp;
     vector<int> durasi, tanggal, kode_lap, harga;
-    rerun: // membuat label untuk menglogoutkan pengguna
-    sports(); // memanggil fungsi sports untuk menampilkan logo uniku futsal
-    salah: // label untuk mengulang inputan yang salah dari antar admin dan user 
+    rerun:
+    sports(); 
+    salah:
     cout << "=================================================" << endl;
     cout << "Selamat datang, silahkan login terlebih dahulu!" << endl;
     cout << "1. Admin" << endl;
@@ -118,50 +119,52 @@ int main () {
     cout << "3. close program" << endl;
     cout << "Masukan disini [1/2/3] : ";
     cin >> login;
-    if (login != '1' && login != '2' && login != '3') { // pengecekan jika pengguna salah memasukan inputan maka akan kembali ke label salah yang di atas
+    if (login != '1' && login != '2' && login != '3') { 
         cout << "Masukan inputan dengan benar!" << endl;
         login = ' ';
         getch();
-        system("cls"); // fungsi ini untuk menghapus print na ke terminal 
+        system("cls");  
         goto salah;
     }
     cout << "=================================================" << endl;
-    getch(); // fungsi menahan layar sampai pengguna memasukan inputan apa saja
+    getch(); 
 
-    if (login == '1') { // percabangan jika pengguna memilih 1 maka akan masuk ke admin dan akan diminta memasukan password
-        ulang: // label untuk kembali menjalankan baris kode jika penggunaa salah memasukan passowrd
+    if (login == '1') {
+        string hapus, cek_data; 
+        ulang: 
         cout << "Masukan password     : ";
-        cin >> cek; // mengecek persamaan password dengan array bernama pass
-        if (cek == pass[0]) { // jika sama maka pengguna akan masuk ke admin
+        cin >> cek; 
+        if (cek == pass[0]) { 
             system("cls");
             cout << "Selamat datang admin!" << endl;
             getch();
         } else {
             cout << "Password salah, silahkan masukan kembali!" << endl;
-            goto ulang; // ini akan meloncat ke label ulang
+            goto ulang; 
         }
-        kembali: // label ini digunakan untuk admin yang ingin kembali ke menu setelah memilih menu sebelumnya
+        kembali: 
         system("cls");
         cout << "=============================" << endl;
         cout << "1. Cek Data Lapangan" << endl;
         cout << "2. Laporan Keuangan Harian" << endl;
         cout << "3. Log out" << endl;
         cout << "Masukan disini [1/2/3] : ";
-        cin >> login; // variabel ini banyak digunakan dalam pengambilan keputusan dari user, dan mengembalikan lagi nilai nya ke 0, karena akan terpakai lagi di percabangan selanjutnya
-        if (login != '1' && login != '2' && login != '3') { // pengecekan jika pengguna salah memasukan inputan maka akan kembali ke label kembali yang di atas
+        cin >> login; 
+        if (login != '1' && login != '2' && login != '3') { 
             cout << "Masukan inputan dengan benar!" << endl;
             login = ' ';
             getch();
-            system("cls"); // fungsi ini untuk menghapus apa yang di cetak sebelumnya di terminal 
+            system("cls");  
             goto kembali;
         }
         cout << "=============================" << endl;
         getch();
-        if (login == '1') { // percabangan jika admin memilih 1 di inputan sebelumnya maka akan masuk ke mencetak data pelanggan yang di inputkan sebelumnya oleh user, bisa dibilang ini ireport dari transaksi sebelumnya
-            login = ' '; // kembalikan ke 0 supaya dapat di pakai di percabangan selanjutnya
-            if (nama.size() > 0) { // mengecek jika ukuran dari vector nama menggunakan fungsi size(), untuk perbandingan jika lebih dari 0 maka berarti itu ada, dan akan masuk ke blok
+        if (login == '1') { 
+            login = ' ';
+            refresh: 
+            if (nama.size() > 0) { 
                 system("cls");
-                for (i = 0; i < nama.size(); i++) { // perulangan untuk mencetak setiap data yang di inputkan oleh user sebelumnya, di dalamnya variabel vector yang dinamis dengan penentu perulangan fungsi size() menghitung total data yang dimiliki oleh vector tersebut
+                for (i = 0; i < nama.size(); i++) { 
                     cout << "=====================================" << endl;
                     cout << "NAMA         : " << nama[i] << endl;
                     cout << "KODE LAP     : " << kode_lap[i] << endl;
@@ -174,17 +177,49 @@ int main () {
                     cout << endl;
                     getch();
                 }
+                cout << "Hapus data? y/t : ";
+                cin >> hapus;
+                transform(hapus.begin(), hapus.end(), hapus.begin(), ::toupper);
+                if (hapus == "Y") {
+                    cout << "Data pelanggan yang mana? masukan namanya disini : ";
+                    cin >> cek_data;
+                    transform(cek_data.begin(), cek_data.end(), cek_data.begin(), ::toupper);
+                    for (i = 0; i < nama.size(); i++) {
+                        if (nama[i] == cek_data) {
+                            nama.erase(nama.begin() + i);
+                            kode_lap.erase(kode_lap.begin() + i);
+                            tanggal.erase(tanggal.begin() + 1);
+                            jam.erase(jam.begin() + 1);
+                            durasi.erase(durasi.begin() + 1);
+                            no_telp.erase(no_telp.begin() + 1);
+                            harga.erase(harga.begin() + 1);
+                            i--;
+                        }
+                    }
+                    cout << "selesai!" << endl;
+                    cout << "Baik data akan kembali di refresh" << endl;
+                    cout << "Mohon tunggu" << endl;
+                    for (int i = 0; i < 5; i++) {
+                        cout << "." ;
+                        Sleep(1000);
+                    }
+                    system("cls");
+                    goto refresh;
+
+                } else {
+                    cout << "Oke" << endl;
+                }
                 cout << "Kembali ke menu? atau log out? [1/2] : ";
-                cin >> login; // gunakan kembali variabel login untuk percabangan admin antara log out ata kembali ke menu 
+                cin >> login; 
                 if (login == '1') {
                     system("cls");
                     login = ' ';
-                    goto kembali; // akan kembali ke menu
+                    goto kembali;
                 } else {
                     system("cls");
-                    goto rerun; // log out ke dashboard utama
+                    goto rerun;
                 }
-            } else { // else ini jika memang belum ada transaksi sama sekali dari user 
+            } else {
                 cout << "==============================================" << endl;
                 cout << "Pemboking belum ada!" << endl;
                 cout << "Anda kami kembalikan ke menu kan! Terima kasih" << endl;
@@ -194,9 +229,9 @@ int main () {
                 goto kembali;
             }
                 
-        } else if (login == '2') { // else ini jika si user memilih selain dari angka 1 maka akan masuk ke laporan keuangan dari total transaksi
+        } else if (login == '2') { 
             system("cls");
-            if (nama.size() == 0) { // cek jika tidak ada data di vector maka beritahu blm ada transaksi
+            if (nama.size() == 0) { 
                 cout << "==============================================" << endl;
                 cout << "Belum ada transaksi!" << endl;
                 cout << "Anda kami kembalikan ke menu kan! Terima kasih" << endl;
@@ -207,41 +242,41 @@ int main () {
             }
             cout << "Laporan Keuangan UNIKU FUTSAL" << endl;
             cout << "==================================" << endl;
-            for (i = 0; i < nama.size(); i++) { // perulangan ini digunakan untuk memasukan setiap harga dari nilai vector harga dengan penentu perulangan total dari setiap transaksi yang ada
+            for (i = 0; i < nama.size(); i++) { 
                 laporan += harga[i];
             }
-            cout << "Total pelanggan hari ini : " << nama.size() << endl; // print dan hitung total berapa index dari vector nama
+            cout << "Total pelanggan hari ini : " << nama.size() << endl; 
             cout << "Total pemasukan          : " << laporan << endl;
             cout << "==================================" << endl;
             getch();
             cout << "Kembali ke menu? atau log out? [1/2] : ";
             cin >> login;
-            if (login == '1') { // sama seperti sebelumnya membuat percabangan untuk membuat percabangan di admin log out atau kembali ke menu
+            if (login == '1') { 
                 login = ' ';
                 system("cls");
-                goto kembali; // kembali ke menu
+                goto kembali;
             } else {
                 system("cls");
-                goto rerun; // log out
+                goto rerun;
             }
-        } else { // logout jika selain 1 dan 2
+        } else {
             getch();
             system("cls");
             goto rerun;
         }
-    } else if (login == '2') { // else ini adalah jika si user ketika login memilih selain dari 1 maka otomatis masuk ke user 
-        string nama_pelanggan, play, telepon; // ini adalah kumpulan deklarasi variabel awal untuk inputan dan nantinya dimasuka ke vector array dengan push.back
-        int lapangan, sewa, menit, i, total; // ini juga sama, namun untuk i sebagai deklarasi perulangan yang akan di pakai nanti
+    } else if (login == '2') {
+        string nama_pelanggan, play, telepon, konversi_pelanggan, konversi_lapangan, konversi_sewa, konversi_menit; 
+        int lapangan, sewa, menit, i, total; 
         ulang1:
         cout << "Masukan password     : ";
         cin >> cek; 
-        if (cek == pass[1]) { // pengecekan passowrd untuk login sebagai user
+        if (cek == pass[1]) {
             system("cls");
             cout << "Selamat datang user!" << endl;
             getch();
         } else {
             cout << "Password salah, silahkan masukan kembali!" << endl;
-            goto ulang1; // ulangi code sampai password benar
+            goto ulang1; 
         }
         
         menu:
@@ -249,8 +284,8 @@ int main () {
         cout << "1. Buat transaksi" << endl;
         cout << "2. Log out" << endl;
         cout << "Masukan disini [1/2] : ";
-        cin >> login; // percabangan untuk user logout atau melakukan transaksi
-        if (login != '1' && login != '2') { // cek apakah inputan benar atau bukan, jika salah maka kembali ke menu dan ulang inputan
+        cin >> login; 
+        if (login != '1' && login != '2') { 
             cout << "Masukan inputan dengan benar! contoh [1/2]" << endl;
             getch();
             system("cls");
@@ -275,9 +310,9 @@ int main () {
         cout << "===========================================================================================================================================================================================" << endl;
         transaksi:
         cout << "\nMasukan jumlah pemboking : ";
-        cin >> konversi; // variabel ini adalah penentu perulangan, total pelanggan yang akan transaksi dalam satu waktu
-        if (all_of(konversi.begin(), konversi.end(), ::isdigit)) { // mengecek apakah string konversi ada angka atau tidaknya, jika ada maka dicek kembali di isdigit.
-            pelanggan = stoi(konversi); // jika beneran angka maka masuk dan konversi string ke integer variabel yaitu pelanggan
+        cin >> konversi_pelanggan;
+        if (all_of(konversi_pelanggan.begin(), konversi_pelanggan.end(), ::isdigit)) { 
+            pelanggan = stoi(konversi_pelanggan);
         } else {
             cout << "Maaf, inputan harus angka!" << endl;
             goto transaksi;
@@ -286,46 +321,70 @@ int main () {
         getch();
         system("cls");
 
-        for (i = 0; i < pelanggan; i++) { // ini adalah perulangan untuk transaksi, dengan penentu perulangan dari variabel pelanggan
-            if (baru == '1') { // mengecek jika variabel baru bernilai satu maka akan menggunakan index yang sudah ada 
+        for (i = 0; i < pelanggan; i++) { 
+            if (baru == '1') {
                 index;
             } else {
-                index = i; // jika false maka index yang pertama pakai dari variabel i, yaitu 0
+                index = i;
             }
             system("cls");
             cout << "Transaksi ke             : " << i + 1 << endl;
             cout << "Masukan nama             : ";
-            cin.ignore(); // penggunaan ini untuk mengabaikan 1 baris kebawah, karena untuk inputan nama pelanggan adalah string dan memang user takutnya menggunakan inputan berspasi
-            getline(cin >> ws, nama_pelanggan); // penggunaan getline seperti ini cin >> ws, adalah untuk menghabiskan whitespace, biasa dipakai jika dimasukan untuk variabel bertipe array 
-            transform(nama_pelanggan.begin(), nama_pelanggan.end(), nama_pelanggan.begin(), ::toupper); // ini adalah fungsi gabungan dari transform dan toupper, seperti yang sudah dijelaskan sebelumnya yang menggunakan file header algorithm dan cctype
-            nama.push_back(nama_pelanggan); // pada bagian ini mengirim inputan dari variabel yang sudah di masukan ke nama_pelanggan lalu mengkonversinya ke toupper dengan transform. dan ya masukan ke array vector dengan fungsi push.back, atau dalam artian masukan dari belakang
+            cin.ignore();
+            getline(cin >> ws, nama_pelanggan);
+            transform(nama_pelanggan.begin(), nama_pelanggan.end(), nama_pelanggan.begin(), ::toupper);
+            nama.push_back(nama_pelanggan); 
+            
             lap:
             cout << "Masukan kode lap [1/2/3] : ";
-            cin >> lapangan;
-            if (lapangan != 1 && lapangan != 2 && lapangan != 3) { // mengecek jika user memasukan selain dari angka 1 sampai 3
-                cout << "Mohon masukan inputan dengan benar untuk kode lap, contoh 1 sampai 3" << endl;
-                goto lap;  // maka akan terus mengulang sampai user memasukan inputan dengan benar sesuai notif yang sudah di beritahukan kepada user
+            cin >> konversi_lapangan;
+            if (all_of(konversi_lapangan.begin(), konversi_lapangan.end(), ::isdigit)) {
+                lapangan = stoi(konversi_lapangan);
+                if (lapangan != 1 && lapangan != 2 && lapangan != 3) {
+                    cout << "Mohon masukan inputan dengan benar untuk kode lap, contoh 1 sampai 3" << endl;
+                    goto lap;  
+                }
+            } else {
+                cout << "Maaf, inputan harus angka!" << endl;
+                goto lap;
             }
-            kode_lap.push_back(lapangan); // ya sama seperti sebelumnya kirim ke array vector, ingat variabel lapangan hanya sebagai variabel sementara penerima inputan, yang nantinya digunakan sebagai penyimpanan sebenarnya adalah array vector
+            kode_lap.push_back(lapangan);
+            
+            sewa:
             cout << "Masukan tanggal sewa     : ";
-            cin >> sewa;
+            cin >> konversi_sewa;
+            if (all_of(konversi_sewa.begin(), konversi_sewa.end(), ::isdigit)) {
+                sewa = stoi(konversi_sewa);
+            } else {
+                cout << "Maaf, inputan harus angka!" << endl;
+                goto sewa;
+            }
             tanggal.push_back(sewa);
+            
             jam:
             cout << "Masukan Jam main         : ";
             getline(cin >> ws, play);
-            if (play != "08:00" && play != "14:00" && play != "20:00") { // mengecek jika user memasukan di luar ketentuan input
+            if (play != "08:00" && play != "14:00" && play != "20:00") {
                 cout << "Mohon masukan inputan dengan benar untuk jam, sesuai ketentuan di atas, contoh [08:00]" << endl;
-                goto jam; // jika masih salah maka akan terus mengulang
+                goto jam; 
             }
             jam.push_back(play);
+
             durasi:
             cout << "Masukan Durasi Jam Main  : ";
-            cin >> menit;
-            if (menit != 1 && menit != 2 && menit != 3) { // cek juga 
-                cout << "Mohon masukan untuk inputan durasi main, kami hanya 1 sampai 3 jam per pagi, sore, dan malam!" << endl;
-                goto durasi; // ulang juga
+            cin >> konversi_menit;
+            if (all_of(konversi_menit.begin(), konversi_menit.end(), ::isdigit)) {
+                menit = stoi(konversi_menit);
+                if (menit != 1 && menit != 2 && menit != 3) { 
+                    cout << "Mohon masukan untuk inputan durasi main, kami hanya 1 sampai 3 jam per pagi, sore, dan malam!" << endl;
+                    goto durasi;
+                }
+            } else {
+                cout << "Maaf, inputan harus angka!" << endl;
+                goto durasi;
             }
             durasi.push_back(menit);
+            
             cout << "No Telp                  : ";
             cin.ignore();
             getline(cin, telepon);
@@ -333,7 +392,7 @@ int main () {
             cout << endl;
 
             system("cls");
-            if (kode_lap[index] == 1) { // percabangan ini untuk menentukan user memasukan 1, 2 atau 3 dalam memasukan tipe lapangan, kemudian memasukan ke variabel total untuk sementara lalu operasikan inputan dengan angka yang berbeda setiap tipe lapangan, terakhir kirim ke variabel vector array dengan push back
+            if (kode_lap[index] == 1) {
                 total = durasi[index] * 150000;
                 harga.push_back(total);
             } else if (kode_lap[index] == 2) {
@@ -341,16 +400,16 @@ int main () {
                 harga.push_back(total);
             } else if (kode_lap[index] == 3) {
                 total = durasi[index] * 200000;
-                harga.push_back(total); // ujungnya ya untuk menentukan total harga dari setiap pelanggan
+                harga.push_back(total);
             }
 
-            cout << "           UNIKU FUTSAL" << endl; // mencetak invoice dari transaksi user sebelumnya
+            cout << "           UNIKU FUTSAL" << endl; 
             cout << "        INVOICE PEMBAYARAN" << endl;
             cout << "====================================" << endl;
             cout << "NAMA      : " << nama[index] << endl;
             cout << "KODE LAP  : " << kode_lap[index] << endl;
             cout << "TANGGAL   : " << tanggal[index] << endl;
-            if (jam[index] == "08:00") { // percabangan ini di gunakan untuk sebagai cetakan jam agar sesuai dengan yang di inputkan, dengan membandingkan setiap index dari variabel yang sebelumnya sudah di simpan di vector array
+            if (jam[index] == "08:00") {
                 if (durasi[index] == 1) {
                     cout << "JAM MAIN  : " << jam[index] << " sampai 09:00" <<endl;
                 } else if (durasi[index] == 2) {
@@ -379,13 +438,13 @@ int main () {
             cout << "NO TELP   : " << no_telp[index] << endl;
             cout << "====================================" << endl;
             cout << "HARGA     : Rp " << harga[index] << endl;
-            cout << "BAYAR     : Rp "; cin >> bayar; // meminta uang dari pelanggan 
-            cout << "KEMBALIAN : " << bayar - harga[index] << endl; // kemudian operasikan untuk melihat total kembalian dari uang pelanggan dengan harga total
+            cout << "BAYAR     : Rp "; cin >> bayar; 
+            cout << "KEMBALIAN : " << bayar - harga[index] << endl; 
             cout << "====================================" << endl;
             cout << "TERIMA KASIH SUDAH MENGGUNAKAN TEMPAT KAMI!" << endl;
             cout << endl;
             cout << endl;
-            index++; // index incrementkan bertujuan untuk membuat index sendiri agar setiap transaksi tidak mengacu ke index i dari perulangan namun dari index yang setiap transaksi akan bertambah dan ketika transaksi lagi maka akan menggunakan index yang sudah di simpan sebelumnya
+            index++;
             getch();
         }
 
@@ -396,20 +455,20 @@ int main () {
         cout << "1. Buat transaksi" << endl;
         cout << "2. Log out" << endl;
         cout << "Masukan disini [1/2] : ";
-        cin >> baru; // percabangan untuk user logout atau kembali melakukan transaksi 
-        if (baru != '1' && baru != '2') { // cek input angka atau bukan supaya tidak error, kalau bukan balik ke menu1
+        cin >> baru;
+        if (baru != '1' && baru != '2') {
             cout << "masukan inputan dengan benar! contoh [1/2]";
             system("cls");
             goto menu1;
         }
         cout << "===============================" << endl;
         getch();
-        if (baru == '1') { // disini prosesnya
+        if (baru == '1') {
             system("cls");
-            goto tfnew; // kembali transaksi
+            goto tfnew;
         } else {
             system("cls");
-            goto rerun; // logout
+            goto rerun;
         }
     } else {
         system("cls");
